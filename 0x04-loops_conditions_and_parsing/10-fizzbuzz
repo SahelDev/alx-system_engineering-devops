@@ -1,19 +1,19 @@
 #!/usr/bin/env bash
-# FizzBuzz numbers
-num=1
-while [ $num -le 100 ]
+# Fizzbuzz in bash scripting language
+
+for i in $(seq 100)
 do
-	if [ $((num % 15)) -eq 0 ]
-	then
-		echo "FizzBuzz"
-	elif [ $((num % 5)) -eq 0 ]
-	then
-		echo "Buzz"
-	elif [ $((num % 3)) -eq 0 ]
-	then
-		echo "Fizz"
-	else
-		echo $num
-	fi
-	num=$((num + 1))
+    if [ $((i % 3)) = 0 ]
+    then
+	echo -n Fizz
+    fi
+    if [ $((i % 5)) = 0 ]
+    then
+	echo -n Buzz
+    fi
+    if [[ $((i % 3)) != 0 && $((i % 5)) != 0 ]]
+    then
+	echo -n "$i"
+    fi
+    echo
 done
