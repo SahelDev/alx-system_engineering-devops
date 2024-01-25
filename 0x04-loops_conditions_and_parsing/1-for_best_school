@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 # This script write ten times Best School
-for i in {1..10}; do
-	printf 'Best School \n';
+
+for (( i=0; i<10; i++ )) 
+do
+  echo "Best School"
 done
