@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# This script write ten times Best School
+for i in {1..10}; do
+	printf 'Best School \n';
+done
