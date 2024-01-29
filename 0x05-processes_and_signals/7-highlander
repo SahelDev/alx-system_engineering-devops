@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+#Basch script that displays word
+
+
+trap "echo I am invincible !!!" 15
+while true
+do
+	echo 'To infinity and beyond'
+	sleep 2
+	
+done
+
