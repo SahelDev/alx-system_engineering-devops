@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+#bash script that display listening sockets and Prog PID
+netstat -pl
