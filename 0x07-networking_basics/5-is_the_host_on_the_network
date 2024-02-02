@@ -3,7 +3,7 @@
 
 
 #extract the ip address
-iip_address=$1
+ip_address=$1
 
 if [ $# -eq 0 ]
 	then
