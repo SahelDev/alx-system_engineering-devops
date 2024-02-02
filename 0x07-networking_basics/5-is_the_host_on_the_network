@@ -3,18 +3,15 @@
 
 
 #extract the ip address
-ip_address=$1
+iip_address=$1
 
 if [ $# -eq 0 ]
 	then
 		echo "usage: $0 {IP_ADDRESS}"
-		exit 1
+		
+	else
+		ping -c 5 "$ip_address"
 fi
 
-#perform the ping
-#for ((i=1; i<=5; i++))
-#do
-	ping -c 5 "$ip_address"
-#done
 
 
