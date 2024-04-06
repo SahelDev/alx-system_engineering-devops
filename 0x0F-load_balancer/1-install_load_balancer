@@ -2,10 +2,11 @@
 # Install HAproxy on clean ubuntu 14.04 machine and setup to proxy requests
 # between 521037-web-01 anweb-02.
 
-
+sudo apt-get install --no-install-recommends software-properties-common
+sudo add-apt-repository ppa:vbernat/haproxy-2.0
 sudo apt-get -y update
 sudo apt-get -y upgrade
-sudo apt-get -y install haproxy
+sudo apt-get -y install haproxy=2.0. \*
 sudo sed -i 's/ENABLED=0/ENABLED=1/' /etc/default/haproxy
 sudo cp /etc/haproxy/haproxy.cfg /etc/haproxy/haproxy.cfg.original
 sudo sed -i "$ a\listen 521037-lb-01\n\tbind *:80\n\tmode http\n\tbalance roundrobin\n\toption httpclose\n\toption forwardfor\n\tserver 521037-web-02 54.159.24.120:80 check\n\tserver 521037-web-01 54.87.239.113:80 check" /etc/haproxy/haproxy.cfg
