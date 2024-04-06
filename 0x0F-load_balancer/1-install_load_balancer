@@ -1,26 +1,12 @@
 #!/usr/bin/env bash
 # Install HAproxy on clean ubuntu 14.04 machine and setup to proxy requests
-# between 521037-web-01 and 521037-web-02.
+# between 521037-web-01 anweb-02.
 
-apt-get update -y && \
-apt-get install -y software-properties-common && \
-add-apt-repository -y ppa:vbernat/haproxy-1.7 && \
-apt-get update -y && \
-apt-get install -y haproxy && \
-if [ -e '/etc/haproxy/haproxy.cfg.orig' ]
-then
-    cat /etc/haproxy/haproxy.cfg.orig > /etc/haproxy/haproxy.cfg
-else
-    cp /etc/haproxy/haproxy.cfg /etc/haproxy/haproxy.cfg.orig
-fi
-echo -e \
-"\nlisten load_balancer
-\tbind :80
-\tmode http
-\tstats enable
-\tstats uri /haproxy?stats
-\tbalance roundrobin
-\tserver 521037-web-01 54.87.239.113:80 check
-\tserver 521037-web-02 54.159.24.120:80 check" \
-    >> /etc/haproxy/haproxy.cfg
-service haproxy restart
+
+sudo apt-get -y update
+sudo apt-get -y upgrade
+sudo apt-get -y install haproxy
+sudo sed -i 's/ENABLED=0/ENABLED=1/' /etc/default/haproxy
+sudo cp /etc/haproxy/haproxy.cfg /etc/haproxy/haproxy.cfg.original
+sudo sed -i "$ a\listen 521037-lb-01\n\tbind *:80\n\tmode http\n\tbalance roundrobin\n\toption httpclose\n\toption forwardfor\n\tserver 521037-web-02 54.159.24.120:80 check\n\tserver 521037-web-01 54.87.239.113:80 check" /etc/haproxy/haproxy.cfg
+sudo service haproxy start
