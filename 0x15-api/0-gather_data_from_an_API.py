@@ -6,6 +6,7 @@ from sys import argv
 
 if __name__ == "__main__":
     '''Gives name of employee and completed tasks'''
+
     if len(argv) is not 2:
         print("Command takes 2 arguments")
         exit
